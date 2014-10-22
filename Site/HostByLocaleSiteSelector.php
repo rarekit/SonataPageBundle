@@ -33,7 +33,7 @@ class HostByLocaleSiteSelector extends BaseSiteSelector
                 continue;
             }
 
-            $enabledSites[] = $site;
+            $enabledSites[] = $site->getTarget() ? $site->getTarget() : $site;
 
             if (!$site->isLocalhost()) {
                 break;

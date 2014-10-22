@@ -55,6 +55,7 @@ class SiteAdmin extends Admin
         $showMapper
             ->add('name')
             ->add('isDefault')
+            ->add('isAlias')
             ->add('enabled')
             ->add('host')
             ->add('locale')
@@ -77,6 +78,7 @@ class SiteAdmin extends Admin
             ->add('isDefault')
             ->add('enabled', null, array('editable' => true))
             ->add('host')
+            ->add('target')
             ->add('relativePath')
             ->add('locale')
             ->add('enabledFrom')
@@ -106,6 +108,7 @@ class SiteAdmin extends Admin
                 ->add('isDefault', null, array('required' => false))
                 ->add('enabled', null, array('required' => false))
                 ->add('host')
+                ->add('target')
                 ->add('locale', 'locale', array(
                     'required' => false
                 ))

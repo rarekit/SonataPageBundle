@@ -203,4 +203,19 @@ interface SiteInterface
      * @return string
      */
     public function getTitle();
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function setTarget(SiteInterface $target = null);
+
+    /**
+     * @return SiteInterface
+     */
+    public function getTarget();
+
+    /**
+     * @return boolean
+     */
+    public function isAlias();
 }

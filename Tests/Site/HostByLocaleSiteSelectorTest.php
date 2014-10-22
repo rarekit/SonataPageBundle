@@ -84,6 +84,35 @@ class HostByLocaleSiteSelectorTest extends BaseLocaleSiteSelectorTest
         $this->assertEquals('/fr', $site->getRelativePath());
     }
 
+    public function testHandleKernelRequestWithTargetSites()
+    {
+        $kernel  = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
+        $request = SiteRequest::create('http://mywebsite.com', 'GET', array(), array(), array(), array(
+            'HTTP_ACCEPT_LANGUAGE' => 'fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4'
+        ));
+
+        // Ensure request locale is null
+        $this->assertNull($request->attributes->get('_locale'));
+
+        $event = new GetResponseEvent($kernel, $request, 'master');
+
+        $this->siteSelector
+            ->expects($this->once())
+            ->method('getSites')
+            ->with($request)
+            ->will($this->returnValue($this->getSitesWithTarget()));
+
+        $this->siteSelector->handleKernelRequest($event);
+
+        // Ensure request locale is fr
+        $this->assertEquals('fr', $request->attributes->get('_locale'));
+
+        $site = $this->getSite();
+
+        // Ensure we retrieved the site "/fr"
+        $this->assertEquals('/fr', $site->getRelativePath());
+    }
+
     /**
      * {@inheritdoc}
      */

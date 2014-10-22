@@ -39,6 +39,8 @@ class HostPathSiteSelector extends BaseSiteSelector
         $pathInfo    = null;
 
         foreach ($this->getSites($request) as $site) {
+            $site = $site->getTarget() ? $site->getTarget() : $site;
+
             if (!$site->isEnabled()) {
                 continue;
             }

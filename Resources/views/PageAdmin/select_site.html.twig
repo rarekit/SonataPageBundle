@@ -26,7 +26,7 @@ file that was distributed with this source code.
     </p>
 
     <ul>
-        {% for site in sites %}
+        {% for site in sites and not site.isAlias() %}
             <li>
                 {% if current and site.id == current.id %}
                     <img src="{{ asset('bundles/sonataadmin/famfamfam/accept.png') }}" />

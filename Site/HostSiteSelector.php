@@ -30,7 +30,7 @@ class HostSiteSelector extends BaseSiteSelector
                 continue;
             }
 
-            $this->site = $site;
+            $this->site = $site->getTarget() ? $site->getTarget() : $site;
 
             if (!$this->site->isLocalhost()) {
                 break;

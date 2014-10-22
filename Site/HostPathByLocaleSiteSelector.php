@@ -42,6 +42,8 @@ class HostPathByLocaleSiteSelector extends HostPathSiteSelector
                 continue;
             }
 
+            $site = $site->getTarget() ? $site->getTarget() : $site;
+
             $enabledSites[] = $site;
 
             $match = $this->matchRequest($site, $request);

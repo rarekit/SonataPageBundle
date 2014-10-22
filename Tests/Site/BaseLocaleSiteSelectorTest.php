@@ -51,6 +51,32 @@ abstract class BaseLocaleSiteSelectorTest extends \PHPUnit_Framework_TestCase
         return $sites;
     }
 
+    protected function getSitesWithTarget()
+    {
+        $sites = array();
+
+        $sites[0] = new Site;
+        $sites[0]->setEnabled(true);
+        $sites[0]->setRelativePath('/fr');
+        $sites[0]->setHost('localhost');
+        $sites[0]->setIsDefault(true);
+        $sites[0]->setLocale('fr');
+
+        $sites[1] = new Site;
+        $sites[1]->setEnabled(true);
+        $sites[1]->setRelativePath('/en');
+        $sites[1]->setHost('localhost');
+        $sites[1]->setIsDefault(false);
+        $sites[1]->setLocale('en');
+
+        $sites[2] = new Site;
+        $sites[2]->setEnabled(true);
+        $sites[2]->setHost('mywebsite.com');
+        $sites[2]->setTarget($sites[0]);
+
+        return $sites;
+    }
+
     /**
      * Gets the site from site selector
      *

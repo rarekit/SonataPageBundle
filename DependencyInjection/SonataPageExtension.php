@@ -319,6 +319,24 @@ class SonataPageExtension extends Extension
             'orphanRemoval' => false,
         ));
 
+        $collector->addAssociation($config['class']['site'], 'mapManyToOne', array(
+            'fieldName'     => 'target',
+            'targetEntity'  => $config['class']['site'],
+            'cascade'       => array(
+                'persist',
+            ),
+            'mappedBy'      => null,
+            'inversedBy'    => null,
+            'joinColumns'   => array(
+                array(
+                    'name'                 => 'site_id',
+                    'referencedColumnName' => 'id',
+                    'onDelete'             => 'CASCADE',
+                ),
+            ),
+            'orphanRemoval' => false,
+        ));
+
         $collector->addIndex($config['class']['snapshot'], 'idx_snapshot_dates_enabled', array(
             'publication_date_start',
             'publication_date_end',

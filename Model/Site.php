@@ -45,6 +45,8 @@ abstract class Site implements SiteInterface
 
     protected $metaDescription;
 
+    protected $target;
+
     /**
      * {@inheritdoc}
      */
@@ -329,5 +331,29 @@ abstract class Site implements SiteInterface
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTarget(SiteInterface $target = null)
+    {
+        $this->target = $target;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAlias()
+    {
+        return !$this->target;
     }
 }
